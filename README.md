@@ -31,14 +31,17 @@ A clean, professional, beginner-friendly web application for managing technical 
 
 ## Screenshots
 
-> **Note**: Add screenshots here after running the app locally.
->
-> Recommended screenshots to include:
-> - Dashboard with stat cards and recent tickets
-> - Ticket list with active filters
-> - Ticket detail page showing notes and quick status buttons
-> - Create ticket form
-> - Statistics page with progress bars
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### All Tickets (Search & Filters)
+![All Tickets](screenshots/all-tickets.png)
+
+### Ticket Details + Notes
+![Ticket Details](screenshots/ticket-details.png)
+
+### Create New Ticket Form
+![Create Ticket](screenshots/create-ticket.png)
 
 ## Installation & Running the Application
 
