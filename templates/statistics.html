@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics • Help Desk Ticket Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Statistics</h1>
+    <p class="subtitle">Detailed breakdown of ticket data</p>
+</div>
+
+<div class="stats-overview">
+    <div class="stat-card large">
+        <div class="stat-number">{{ total_tickets }}</div>
+        <div class="stat-label">Total Tickets in System</div>
+    </div>
+</div>
+
+<div class="stats-grid-three">
+    <!-- Status Breakdown -->
+    <div class="card">
+        <h3>By Status</h3>
+        {% if status_stats %}
+            <div class="stat-bars">
+                {% for status, count, percentage in status_stats %}
+                    <div class="stat-bar-item">
+                        <div class="stat-bar-header">
+                            <span class="badge status-{{ status|replace(' ', '-')|lower }}">{{ status }}</span>
+                            <span class="stat-value">{{ count }} <small>({{ percentage }}%)</small></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill status-{{ status|replace(' ', '-')|lower }}" 
+                                 style="width: {{ percentage }}%"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No tickets yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Priority Breakdown -->
+    <div class="card">
+        <h3>By Priority</h3>
+        {% if priority_stats %}
+            <div class="stat-bars">
+                {% for priority, count, percentage in priority_stats %}
+                    <div class="stat-bar-item">
+                        <div class="stat-bar-header">
+                            <span class="badge badge-{{ priority|lower }}">{{ priority }}</span>
+                            <span class="stat-value">{{ count }} <small>({{ percentage }}%)</small></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill priority-{{ priority|lower }}" 
+                                 style="width: {{ percentage }}%"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No tickets yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Category Breakdown -->
+    <div class="card">
+        <h3>By Category</h3>
+        {% if category_stats %}
+            <div class="stat-bars">
+                {% for category, count, percentage in category_stats %}
+                    <div class="stat-bar-item">
+                        <div class="stat-bar-header">
+                            <span>{{ category }}</span>
+                            <span class="stat-value">{{ count }} <small>({{ percentage }}%)</small></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ percentage }}%; background: #6c757d;"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No tickets yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="back-link" style="margin-top: 2rem;">
+    <a href="{{ url_for('dashboard') }}">&larr; Back to Dashboard</a>
+</div>
+{% endblock %}

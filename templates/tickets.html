@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}All Tickets • Help Desk Ticket Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>All Tickets</h1>
+    <a href="{{ url_for('create_ticket') }}" class="btn btn-primary">+ Create New Ticket</a>
+</div>
+
+<!-- Search and Filters -->
+<div class="filters-card">
+    <form method="get" action="{{ url_for('list_tickets') }}" class="filters-form">
+        <div class="filter-row">
+            <!-- Search -->
+            <div class="filter-group search-group">
+                <label for="q">Search</label>
+                <input type="text" 
+                       id="q" 
+                       name="q" 
+                       value="{{ search_query }}" 
+                       placeholder="Search by title, description or ticket ID...">
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-group">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="">All Statuses</option>
+                    {% for status in allowed_statuses %}
+                        <option value="{{ status }}" {% if status_filter == status %}selected{% endif %}>
+                            {{ status }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Priority Filter -->
+            <div class="filter-group">
+                <label for="priority">Priority</label>
+                <select id="priority" name="priority">
+                    <option value="">All Priorities</option>
+                    {% for priority in allowed_priorities %}
+                        <option value="{{ priority }}" {% if priority_filter == priority %}selected{% endif %}>
+                            {{ priority }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="">All Categories</option>
+                    {% for category in allowed_categories %}
+                        <option value="{{ category }}" {% if category_filter == category %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+            <a href="{{ url_for('list_tickets') }}" class="btn btn-secondary">Clear All</a>
+        </div>
+    </form>
+</div>
+
+<!-- Tickets Table -->
+{% if tickets %}
+    <div class="table-responsive">
+        <table class="tickets-table">
+            <thead>
+                <tr>
+                    <th style="width: 60px;">ID</th>
+                    <th>Title</th>
+                    <th style="width: 100px;">Priority</th>
+                    <th style="width: 140px;">Category</th>
+                    <th style="width: 110px;">Status</th>
+                    <th style="width: 110px;">Created</th>
+                    <th style="width: 160px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td><strong>#{{ ticket.id }}</strong></td>
+                    <td>
+                        <a href="{{ url_for('ticket_details', ticket_id=ticket.id) }}" class="ticket-title-link">
+                            {{ ticket.title }}
+                        </a>
+                    </td>
+                    <td>
+                        <span class="badge badge-{{ ticket.priority|lower }}">{{ ticket.priority }}</span>
+                    </td>
+                    <td>{{ ticket.category }}</td>
+                    <td>
+                        <span class="badge status-{{ ticket.status|replace(' ', '-')|lower }}">{{ ticket.status }}</span>
+                    </td>
+                    <td>{{ ticket.created_at.strftime('%b %d, %Y') }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('ticket_details', ticket_id=ticket.id) }}" class="btn btn-sm btn-secondary">View</a>
+                        <a href="{{ url_for('edit_ticket', ticket_id=ticket.id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        
+                        <form method="post" 
+                              action="{{ url_for('delete_ticket', ticket_id=ticket.id) }}" 
+                              class="inline-form"
+                              onsubmit="return confirm('Are you sure you want to permanently delete this ticket?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="results-count">
+        Showing {{ tickets|length }} ticket{{ 's' if tickets|length != 1 else '' }}
+    </div>
+{% else %}
+    <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>No tickets found</h3>
+        <p>Try adjusting your search or filters, or create a new ticket.</p>
+        <div class="empty-actions">
+            <a href="{{ url_for('list_tickets') }}" class="btn btn-secondary">Clear Filters</a>
+            <a href="{{ url_for('create_ticket') }}" class="btn btn-primary">Create New Ticket</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

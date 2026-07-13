@@ -1,0 +1,880 @@
+/* ========================================
+   Help Desk Ticket Tracker - Professional Styles
+   Clean, modern, responsive design
+   ======================================== */
+
+:root {
+    --primary: #0d6efd;
+    --primary-dark: #0a58ca;
+    --success: #198754;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --info: #0dcaf0;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --border: #dee2e6;
+    
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --radius: 8px;
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: #f4f6f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+/* Navbar */
+.navbar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.navbar-brand a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.35rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+}
+
+.brand-text {
+    font-weight: 700;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1.75rem;
+}
+
+.nav-link {
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--dark);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+.btn-status {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+}
+
+/* Status-specific button colors */
+.btn-Open { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.btn-In-Progress { background-color: #cfe2ff; color: #084298; border: 1px solid #9ec5fe; }
+.btn-Resolved { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.btn-Closed { background-color: #e2e3e5; color: #41464b; border: 1px solid #d3d6d8; }
+
+.btn-status:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+/* Alerts / Flash Messages */
+.flash-container {
+    margin: 1.5rem 0;
+}
+
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    box-shadow: var(--shadow);
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+.alert-info {
+    background-color: #cff4fc;
+    color: #055160;
+    border: 1px solid #b6effb;
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    padding: 0 0.25rem;
+}
+
+.alert-close:hover {
+    opacity: 1;
+}
+
+/* Page Headers */
+.page-header {
+    margin: 2rem 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.subtitle {
+    color: var(--gray);
+    margin-top: 0.25rem;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.stat-number {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+}
+
+.stat-label {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Colored stat cards */
+.stat-card.status-open .stat-number { color: #198754; }
+.stat-card.status-in-progress .stat-number { color: #0d6efd; }
+.stat-card.status-resolved .stat-number { color: #20c997; }
+.stat-card.status-closed .stat-number { color: #6c757d; }
+
+/* Section */
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.35rem;
+}
+
+/* Tables */
+.table-responsive {
+    overflow-x: auto;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.tickets-table th,
+.tickets-table td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.tickets-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--gray);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tickets-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tickets-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.ticket-title-link {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ticket-title-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.inline-form {
+    display: inline;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.65em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 50rem;
+    color: white;
+}
+
+.badge-low { background-color: #198754; }
+.badge-medium { background-color: #fd7e14; }
+.badge-high { background-color: #dc3545; }
+.badge-critical { background-color: #6f42c1; }
+
+.status-open { background-color: #198754; color: white; }
+.status-in-progress { background-color: #0d6efd; color: white; }
+.status-resolved { background-color: #20c997; color: white; }
+.status-closed { background-color: #6c757d; color: white; }
+
+.status-large {
+    font-size: 0.95rem;
+    padding: 0.4em 0.9em;
+}
+
+/* Filters */
+.filters-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.filters-form .filter-row {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray);
+    margin-bottom: 0.35rem;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    background: white;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Forms */
+.form-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.ticket-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.ticket-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.required {
+    color: var(--danger);
+}
+
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus,
+.ticket-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.form-hint {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Ticket Detail Page */
+.ticket-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ticket-title {
+    font-size: 1.5rem;
+    color: var(--gray);
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.ticket-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: white;
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.meta-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ticket-description {
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: #333;
+}
+
+/* Notes */
+.notes-timeline {
+    margin: 1.25rem 0;
+}
+
+.note-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.note-item:last-child {
+    border-bottom: none;
+}
+
+.note-header {
+    margin-bottom: 0.5rem;
+}
+
+.note-date {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.note-content {
+    white-space: pre-wrap;
+    color: #333;
+    line-height: 1.65;
+}
+
+.add-note-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.add-note-section h4 {
+    margin-bottom: 0.75rem;
+}
+
+/* Status Update */
+.status-update-form .status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.empty-state.small {
+    padding: 1.5rem;
+    box-shadow: none;
+    background: transparent;
+}
+
+.empty-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.empty-state p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.empty-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Statistics Page */
+.stats-overview {
+    margin-bottom: 2rem;
+}
+
+.stat-card.large {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.stats-grid-three {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.stat-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.stat-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.stat-value {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.stat-value small {
+    color: var(--gray);
+    font-weight: 400;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 50rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 50rem;
+    transition: width 0.4s ease;
+}
+
+/* Priority progress colors */
+.progress-fill.priority-low { background-color: #198754; }
+.progress-fill.priority-medium { background-color: #fd7e14; }
+.progress-fill.priority-high { background-color: #dc3545; }
+.progress-fill.priority-critical { background-color: #6f42c1; }
+
+/* Status progress colors */
+.progress-fill.status-open { background-color: #198754; }
+.progress-fill.status-in-progress { background-color: #0d6efd; }
+.progress-fill.status-resolved { background-color: #20c997; }
+.progress-fill.status-closed { background-color: #6c757d; }
+
+/* Results count */
+.results-count {
+    text-align: right;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Breakdown lists (dashboard) */
+.stat-list {
+    list-style: none;
+}
+
+.stat-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat-list li:last-child {
+    border-bottom: none;
+}
+
+.stat-count {
+    font-weight: 700;
+    color: var(--dark);
+    background: #f8f9fa;
+    padding: 0.15rem 0.6rem;
+    border-radius: 50rem;
+    font-size: 0.9rem;
+}
+
+/* Error Pages */
+.error-page {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 520px;
+    margin: 2rem auto;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-page h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 2rem 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    color: var(--gray);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Back link */
+.back-link {
+    margin-top: 2rem;
+}
+
+.back-link a {
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link a:hover {
+    color: var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .navbar-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 1.25rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border);
+    }
+    
+    .filters-form .filter-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .ticket-detail-header {
+        flex-direction: column;
+    }
+    
+    .header-actions {
+        width: 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid-three {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .actions .btn-sm {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Print styles (nice for PDF export if needed) */
+@media print {
+    .navbar, .btn, .filters-card, .header-actions, .add-note-section {
+        display: none !important;
+    }
+    
+    .card, .ticket-meta {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

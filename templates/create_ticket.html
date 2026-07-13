@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Ticket • Help Desk Ticket Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Create New Ticket</h1>
+    <p class="subtitle">Submit a new technical support request</p>
+</div>
+
+<div class="form-container">
+    <form method="post" action="{{ url_for('create_ticket') }}" class="ticket-form">
+        <div class="form-group">
+            <label for="title">Ticket Title <span class="required">*</span></label>
+            <input type="text" 
+                   id="title" 
+                   name="title" 
+                   value="{{ title|default('') }}" 
+                   placeholder="Brief summary of the issue"
+                   required>
+            <small class="form-hint">Keep it clear and concise (e.g., "Cannot print from accounting PC")</small>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description <span class="required">*</span></label>
+            <textarea id="description" 
+                      name="description" 
+                      rows="6" 
+                      placeholder="Provide as much detail as possible: what happened, when it started, any error messages, steps already tried..."
+                      required>{{ description|default('') }}</textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="priority">Priority <span class="required">*</span></label>
+                <select id="priority" name="priority" required>
+                    <option value="">-- Select Priority --</option>
+                    {% for p in allowed_priorities %}
+                        <option value="{{ p }}" {% if priority|default('') == p %}selected{% endif %}>
+                            {{ p }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category <span class="required">*</span></label>
+                <select id="category" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    {% for c in allowed_categories %}
+                        <option value="{{ c }}" {% if category|default('') == c %}selected{% endif %}>
+                            {{ c }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('list_tickets') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Create Ticket</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

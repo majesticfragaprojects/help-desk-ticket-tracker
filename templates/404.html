@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found (404) • Help Desk Ticket Tracker{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-code">404</div>
+    <h1>Page Not Found</h1>
+    <p class="error-message">
+        Sorry, the page or ticket you're looking for doesn't exist or has been moved.
+    </p>
+    <div class="error-actions">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+        <a href="{{ url_for('list_tickets') }}" class="btn btn-secondary">Browse All Tickets</a>
+    </div>
+</div>
+{% endblock %}

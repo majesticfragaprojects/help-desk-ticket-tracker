@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error (500) • Help Desk Ticket Tracker{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-code">500</div>
+    <h1>Something Went Wrong</h1>
+    <p class="error-message">
+        We're experiencing technical difficulties on our end. Please try again in a few moments.
+    </p>
+    <div class="error-actions">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Return to Dashboard</a>
+        <a href="javascript:window.location.reload()" class="btn btn-secondary">Try Again</a>
+    </div>
+</div>
+{% endblock %}
